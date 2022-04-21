@@ -16,10 +16,10 @@ food = Food()
 score_table = ScoreBoard()
 
 screen.listen()
-screen.onkey(snake.up, "Up")
-screen.onkey(snake.down, "Down")
-screen.onkey(snake.left, "Left")
-screen.onkey(snake.right, "Right")
+screen.onkey(snake.turn_up, "Up")
+screen.onkey(snake.turn_down, "Down")
+screen.onkey(snake.turn_left, "Left")
+screen.onkey(snake.turn_right, "Right")
 
 run = True
 
@@ -33,13 +33,13 @@ while run:
         snake.adding_segments()
         score_table.increase_score()
 
-    if snake.head.xcor() > 290 or snake.head.xcor() < -290 or  snake.head.ycor() > 290 or snake.head.ycor() < -290:
-        run = False
-        score_table.game_over()
+    if snake.head.xcor() > 290 or snake.head.xcor() < -290 or snake.head.ycor() > 290 or snake.head.ycor() < -290:
+        score_table.high_score_fun()
+        snake.restart()
 
     for segment in snake.segments[1:]:
         if snake.head.position() == segment.position():
-            run = False
-            score_table.game_over()
+            score_table.high_score_fun()
+            snake.restart()
 
 screen.exitonclick()

@@ -25,19 +25,19 @@ class Snake:
             self.segments[seg_num].goto(new_x, new_y)
         self.head.forward(MOVE_DISTANCE)
 
-    def up(self):
+    def turn_up(self):
         if self.head.heading() != 270:
             self.head.setheading(90)
 
-    def down(self):
+    def turn_down(self):
         if self.head.heading() != 90:
             self.head.setheading(270)
 
-    def left(self):
+    def turn_left(self):
         if self.head.heading() != 0:
             self.head.setheading(180)
 
-    def right(self):
+    def turn_right(self):
         if self.head.heading() != 180:
             self.head.setheading(0)
 
@@ -47,3 +47,10 @@ class Snake:
         new_segment.color("white")
         new_segment.goto(self.segments[-1].xcor(), self.segments[-1].ycor())
         self.segments.append(new_segment)
+
+    def restart(self):
+        for seg in self.segments:
+            seg.goto(10000, 10000)
+        self.segments.clear()
+        self.create_snake()
+        self.head = self.segments[0]

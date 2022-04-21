@@ -1,11 +1,23 @@
 from turtle import Turtle
 
 
+def score_history_read():
+    with open("score_history.txt") as file:
+        score = file.read()
+        return int(score)
+
+
+def score_history_write(score):
+    with open("score_history.txt", "w") as file:
+        file.write(str(score))
+
+
 class ScoreBoard(Turtle):
 
     def __init__(self):
         super().__init__()
         self.score = 0
+        self.high_score = score_history_read()
         self.color("white")
         self.penup()
         self.goto(0, 270)
@@ -13,13 +25,21 @@ class ScoreBoard(Turtle):
         self.hideturtle()
 
     def update_score(self):
-        self.write(f"Score: {self.score}", align="center", font=("Arial", 18, "normal"))
+        self.clear()
+        self.write(f"Score: {self.score} High Score: {self.high_score}", align="center", font=("Arial", 18, "normal"))
 
     def increase_score(self):
-        self.clear()
         self.score += 1
-        self.write(f"Score: {self.score}", align="center", font=("Arial", 18, "normal"))
+        self.update_score()
 
-    def game_over(self):
-        self.goto(0, 0)
-        self.write("GAME OVER", align="center", font=("Verdana", 22, "normal"))
+    # def game_over(self):
+    #     self.goto(0, 0)
+    #     self.write("GAME OVER", align="center", font=("Verdana", 22, "normal"))
+
+    def high_score_fun(self):
+        if self.score > self.high_score:
+            self.high_score = self.score
+            score_history_write(self.high_score)
+        self.score = 0
+        self.update_score()
+
