@@ -30,12 +30,12 @@ class ScoreBoard(Turtle):
         self.update_score()
         self.hideturtle()
 
-    # This function drawing a scoreboard at the top of game screen
+    # This function is drawing a scoreboard at the top of game screen
     def update_score(self):
         self.clear()
         self.write(f"Score: {self.score} High Score: {self.high_score}", align="center", font=("Arial", 18, "normal"))
 
-    # This function updating scoreboard when food is eaten
+    # This function is updating scoreboard when food is eaten
     def increase_score(self):
         self.score += 1
         self.update_score()
