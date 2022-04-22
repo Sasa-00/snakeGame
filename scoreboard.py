@@ -3,13 +3,16 @@ from turtle import Turtle
 
 def score_history_read():
     with open("score_history.txt") as file:
-        score = file.read()
+        score_string = file.read()
+        for char in score_string.split():
+            if char.isdigit():
+                score = char
         return int(score)
 
 
 def score_history_write(score):
     with open("score_history.txt", "w") as file:
-        file.write(str(score))
+        file.write(f"High_score = {score}")
 
 
 class ScoreBoard(Turtle):
