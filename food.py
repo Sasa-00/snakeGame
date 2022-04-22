@@ -5,6 +5,7 @@ COLORS = ["purple", "green", "blue", "red", "yellow", "orange", "pink", "gray"]
 
 class Food(Turtle):
 
+    # Function of initialization
     def __init__(self):
         super().__init__()
         self.color("purple")
@@ -14,6 +15,7 @@ class Food(Turtle):
         self.speed("fastest")
         self.refresh()
 
+    # Function that randomly throwing food, with different colors
     def refresh(self):
         self.goto(random.randint(-280, 280), random.randint(-280, 280))
         self.color(random.choice(COLORS))
